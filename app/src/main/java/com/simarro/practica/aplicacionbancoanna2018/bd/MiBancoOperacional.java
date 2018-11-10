@@ -54,6 +54,7 @@ public class MiBancoOperacional {
         if (resultado==0) {
             return 0;
         } else {
+            System.out.println("Devuelve un 1 todo es correcto");
             return 1;
         }
 
@@ -90,5 +91,9 @@ public class MiBancoOperacional {
     // Operacion getMovimientosTipo: Obtiene un ArrayList de los movimientos de un tipo específico de una cuenta que recibe como parámetro
     public ArrayList<Movimiento> getMovimientosTipo(Cuenta c, int tipo){
         return miBD.getMovimientoDAO().getMovimientosTipo(c, tipo);
+    }
+    public MiBD getmiBD(){
+        return this.miBD;
+
     }
 }

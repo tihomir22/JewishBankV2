@@ -21,7 +21,11 @@
         <activity android:name=".PostLogin" />
         <activity android:name=".cambiarContrasenya" />
         <activity android:name=".Transferencias" />
-        <activity android:name=".RegistroActividad"></activity>
+        <activity android:name=".RegistroActividad" />
+        <activity
+            android:name=".PosicionGlobal"
+            android:label="@string/title_activity_posicion_global"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

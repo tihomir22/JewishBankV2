@@ -22,6 +22,10 @@ public class Login extends AppCompatActivity {
          mbo = MiBancoOperacional.getInstance(this);
     }
 
+
+
+
+
     public void logearse(View view) {
         EditText et=findViewById(R.id.editText);
         EditText et2=findViewById(R.id.editText2);
@@ -32,8 +36,9 @@ public class Login extends AppCompatActivity {
             c.setClaveSeguridad(et2.getText().toString());
             if(mbo.login(c)!=null){
                 Intent intento=new Intent(this.getBaseContext(),PostLogin.class);
-                intento.putExtra("user",et.getText().toString());
+                intento.putExtra("nif",et.getText().toString());
                 intento.putExtra("pass",et2.getText().toString());
+                //Cliente aux = (Cliente) mbo.getmiBD().getClienteDAO().search(c);
                 startActivity(intento);
             }else{
                 AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
