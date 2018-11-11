@@ -1,11 +1,13 @@
 package com.simarro.practica.jewishbank;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +16,7 @@ import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
 
 public class PosicionGlobal extends AppCompatActivity {
-    ArrayAdapter<Cuenta> adaptadorCuentas=null;
+    AccountAdapter<Cuenta>adaptadorCuentasV2=null;
     MiBancoOperacional mbo=null;
     Cliente cli=null;
     ListView list=null;
@@ -25,9 +27,22 @@ public class PosicionGlobal extends AppCompatActivity {
         mbo=MiBancoOperacional.getInstance(this);
         this.cargarDatosCliente();
         System.out.println("Hay "+this.cli.getListaCuentas().get(0).getListaMovimientos().size()+" movimientos");
-        this.adaptadorCuentas=new ArrayAdapter<Cuenta>(this,android.R.layout.simple_list_item_1,this.cli.getListaCuentas());
-         list=findViewById(R.id.listview1);
-         list.setAdapter(this.adaptadorCuentas);
+
+        this.adaptadorCuentasV2=new AccountAdapter<Cuenta>(this,R.layout.elemento_lista,this.cli.getListaCuentas());
+        list=findViewById(R.id.listview1);
+        list.setAdapter(this.adaptadorCuentasV2);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Cuenta item = adaptadorCuentasV2.getItem(i);
+                //System.out.println(item.toString());
+                Intent intento=new Intent(view.getContext(),TransferenciasActivity.class);
+                intento.putExtra("id",item.getId()+"");
+                startActivity(intento);
+            }
+        });
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +55,8 @@ public class PosicionGlobal extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void cargarDatosCliente(){
         Cliente aux=new Cliente();

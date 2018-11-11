@@ -25,7 +25,8 @@
         <activity
             android:name=".PosicionGlobal"
             android:label="@string/title_activity_posicion_global"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TransferenciasActivity"></activity>
     </application>
 
 </manifest>
