@@ -1,4 +1,4 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
+import com.simarro.practica.jewishbank.R;
 
 public class cambiarContrasenya extends AppCompatActivity implements View.OnClickListener {
     EditText ed;

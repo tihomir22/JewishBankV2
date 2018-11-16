@@ -1,4 +1,4 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -19,6 +19,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.simarro.practica.jewishbank.R;
 
 import java.io.Console;
 

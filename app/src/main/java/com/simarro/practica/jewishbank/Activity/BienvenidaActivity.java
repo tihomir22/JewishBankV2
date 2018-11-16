@@ -1,4 +1,4 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBD;
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
+import com.simarro.practica.jewishbank.R;
 
 public class BienvenidaActivity extends AppCompatActivity {
 

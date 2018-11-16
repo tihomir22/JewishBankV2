@@ -1,7 +1,6 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Activity;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
+import com.simarro.practica.jewishbank.R;
 
 public class PostLogin extends AppCompatActivity implements View.OnClickListener {
     MiBancoOperacional mbo=null;

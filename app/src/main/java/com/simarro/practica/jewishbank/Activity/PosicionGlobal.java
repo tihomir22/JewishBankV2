@@ -1,4 +1,4 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
+import com.simarro.practica.jewishbank.Adapters.AccountAdapter;
+import com.simarro.practica.jewishbank.R;
 
 public class PosicionGlobal extends AppCompatActivity {
-    AccountAdapter<Cuenta>adaptadorCuentasV2=null;
+    AccountAdapter<Cuenta> adaptadorCuentasV2=null;
     MiBancoOperacional mbo=null;
     Cliente cli=null;
     ListView list=null;
@@ -24,12 +25,12 @@ public class PosicionGlobal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posicion_global);
+        /*
         mbo=MiBancoOperacional.getInstance(this);
         this.cargarDatosCliente();
-        System.out.println("Hay "+this.cli.getListaCuentas().get(0).getListaMovimientos().size()+" movimientos");
-
         this.adaptadorCuentasV2=new AccountAdapter<Cuenta>(this,R.layout.elemento_lista,this.cli.getListaCuentas());
-        list=findViewById(R.id.listview1);
+
+        /*list=findViewById(R.id.listview1);
         list.setAdapter(this.adaptadorCuentasV2);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -54,6 +55,7 @@ public class PosicionGlobal extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
     }
 
 

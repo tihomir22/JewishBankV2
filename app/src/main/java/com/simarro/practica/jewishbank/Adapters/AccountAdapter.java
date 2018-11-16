@@ -1,4 +1,4 @@
-package com.simarro.practica.jewishbank;
+package com.simarro.practica.jewishbank.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
+import com.simarro.practica.jewishbank.R;
 
 import java.util.ArrayList;
 import java.util.List;
