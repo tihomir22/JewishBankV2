@@ -16,31 +16,11 @@ import com.simarro.practica.jewishbank.Adapters.TransferAdapter;
 import java.util.ArrayList;
 
 public class TransferenciasActivity extends AppCompatActivity {
-    MiBancoOperacional mbo=null;
-    TransferAdapter adaptador=null;
-    ListView lista=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transferencias_lista);
-        String id= getIntent().getStringExtra("id");
-        System.out.println("jerk it bra "+id);
-        mbo=MiBancoOperacional.getInstance(this);
-        Cuenta c=new Cuenta();
-        c.setId(Integer.parseInt(id.trim()));
-        ArrayList<Movimiento> listamov=mbo.getMovimientos(c);
-        System.out.println("tiene "+listamov.size());
-        if(listamov.size()>0){
-            lista=findViewById(R.id.listatransferencias1);
-            adaptador=new TransferAdapter(this,R.layout.elemento_lista,listamov);
-            lista.setAdapter(adaptador);
-            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(view.getContext(),adaptador.getItem(i).toString(),Toast.LENGTH_SHORT).show();
-                }
-                });
-        }
+
 
     }
 }
