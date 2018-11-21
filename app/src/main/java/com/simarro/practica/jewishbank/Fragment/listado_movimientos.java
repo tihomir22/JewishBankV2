@@ -5,10 +5,12 @@ import android.accounts.Account;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Movimiento;
 import com.simarro.practica.jewishbank.Activity.TransferenciasActivity;
 import com.simarro.practica.jewishbank.Adapters.AccountAdapter;
+import com.simarro.practica.jewishbank.Adapters.DialogoPersonalizado;
 import com.simarro.practica.jewishbank.Adapters.TransferAdapter;
 import com.simarro.practica.jewishbank.R;
 
@@ -26,7 +29,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class listado_movimientos extends Fragment {
+public class listado_movimientos extends Fragment implements AdapterView.OnItemClickListener {
 
 
     ArrayList<Movimiento> listamovimientos=null;
@@ -43,6 +46,7 @@ public class listado_movimientos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_listado_movimientos, container, false);
     }
 
@@ -70,16 +74,30 @@ public class listado_movimientos extends Fragment {
 
         this.adaptador = new TransferAdapter(this.getActivity(), R.layout.elemento_lista, this.listamovimientos);
         lista.setAdapter(this.adaptador);
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(view.getContext(), adaptador.getItem(i).toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        lista.setOnItemClickListener(this);
 
     }
     public void cargarAPartirDeCuenta(Cuenta c){
         this.listamovimientos=this.mbo.getMovimientos(c);
         this.inicializarMovil();
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        DialogoPersonalizado dialogo = newInstance("jerk",1488);
+        dialogo.show(fragmentManager, "tagAlerta");
+    }
+    static DialogoPersonalizado newInstance(String nombre,int num) {
+        DialogoPersonalizado f = new DialogoPersonalizado();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putString("titulo", nombre);
+        args.putInt("valor", num);
+        f.setArguments(args);
+
+        return f;
     }
 }
