@@ -9,7 +9,6 @@ import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
 import com.simarro.practica.jewishbank.Fragment.listado_cuentas;
 import com.simarro.practica.jewishbank.Fragment.listado_movimientos;
 import com.simarro.practica.jewishbank.Interfaces.CuentaListener;
-import com.simarro.practica.jewishbank.Interfaces.MovimientoListener;
 import com.simarro.practica.jewishbank.R;
 
 public class PosicionGlobal extends AppCompatActivity implements CuentaListener {
