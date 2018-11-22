@@ -2,6 +2,7 @@ package com.simarro.practica.jewishbank.Fragment;
 
 
 
+
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.annotation.Nullable;
@@ -81,19 +82,12 @@ public class listado_cuentas extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(listener!=null){
                     listener.onCuentaSeleccionada((Cuenta) lstListado.getAdapter().getItem(i));
+
                 }
-                //Cuenta item = (Cuenta) adaptadorCuentas.getItem(i);
-                //System.out.println(item.toString());
-                /*
-                Intent intento=new Intent(view.getContext(),TransferenciasActivity.class);
-                intento.putExtra("id",item.getId()+"");
-                startActivity(intento);
-                */
+
     }
     });
 
     }
-    public void yeaboiii(){
-        System.out.println("Yea boi");
-    }
+
 }

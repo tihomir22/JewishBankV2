@@ -1,23 +1,15 @@
 package com.simarro.practica.jewishbank.Activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
-import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
-import com.simarro.practica.jewishbank.Adapters.AccountAdapter;
 import com.simarro.practica.jewishbank.Fragment.listado_cuentas;
 import com.simarro.practica.jewishbank.Fragment.listado_movimientos;
 import com.simarro.practica.jewishbank.Interfaces.CuentaListener;
+import com.simarro.practica.jewishbank.Interfaces.MovimientoListener;
 import com.simarro.practica.jewishbank.R;
 
 public class PosicionGlobal extends AppCompatActivity implements CuentaListener {
@@ -25,12 +17,11 @@ public class PosicionGlobal extends AppCompatActivity implements CuentaListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posicion_global);
-        /*if(getSupportFragmentManager().findFragmentById(R.id.fragment3)!=null) {
-            System.out.println("Esta el fragmento detalle");
-            ((listado_movimientos)getSupportFragmentManager().findFragmentById(R.id.fragment3)).yeaboi();
-        }*/
-        listado_cuentas cuentas=(listado_cuentas)getSupportFragmentManager().findFragmentById(R.id.fragment);
+
+
+        listado_cuentas cuentas= (listado_cuentas) getSupportFragmentManager().findFragmentById(R.id.fragment);
         cuentas.setCuentaListener(this);
+
         System.out.println("AQUI"+ cuentas);
     }
 
@@ -40,7 +31,9 @@ public class PosicionGlobal extends AppCompatActivity implements CuentaListener 
 
         boolean hayMovimiento=(getSupportFragmentManager().findFragmentById(R.id.fragment3)!=null);
         if(hayMovimiento){
+
             ((listado_movimientos)getSupportFragmentManager().findFragmentById(R.id.fragment3)).cargarAPartirDeCuenta(c);
+
 
         }else{
             Intent intento=new Intent(this,TransferenciasActivity.class);
