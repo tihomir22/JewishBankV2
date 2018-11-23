@@ -29,43 +29,39 @@ public class DialogoPersonalizado extends DialogFragment implements View.OnClick
     public DialogoPersonalizado() {
     }
 
+
+    static DialogoPersonalizado newInstance(Movimiento mov) {
+
+        DialogoPersonalizado f = new DialogoPersonalizado();
+        Bundle args = new Bundle();
+        args.putSerializable("obj",mov);
+        f.setArguments(args);
+
+        return f;
+    }
+
     @SuppressLint("ResourceType")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-
-
-
+        //LayoutInflater inflater = getActivity().getLayoutInflater();
         View view  = getActivity().getLayoutInflater().inflate(R.layout.dialog_movimientos, null);
         Movimiento myTitulo = (Movimiento) getArguments().getSerializable("obj");
 
-
-
-        /*builder.setView(view)
-
-                .setPositiveButton(R.id.dembow, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
         builder .setView(view);
 
-       //textoId=(TextView)getView().findViewById(R.id.textoIdDialogo);
-        //textoId=getActivity().findViewById(R.id.textoIdDialogo);
-            textoId=view.findViewById(R.id.textoIdDialogo);
-            descripcion=view.findViewById(R.id.textoDatosDialogo);
-            descripcion2=view.findViewById(R.id.textoDatosDialogo2);
-            Button btnAceptar=view.findViewById(R.id.dembow);
-            Button btnCancelar=view.findViewById(R.id.dembow2);
+        textoId=view.findViewById(R.id.textoIdDialogo);
+        descripcion=view.findViewById(R.id.textoDatosDialogo);
+        descripcion2=view.findViewById(R.id.textoDatosDialogo2);
+        Button btnAceptar=view.findViewById(R.id.dembow);
+        Button btnCancelar=view.findViewById(R.id.dembow2);
 
-            textoId.setText("id: "+myTitulo.getId()+"");
-            descripcion.setText("Descripcion: "+myTitulo.getDescripcion()+"\n Importe: "+myTitulo.getImporte()+"\n Tipo:"+myTitulo.getTipo());
-            descripcion2.setText("Destino: "+myTitulo.getCuentaDestino().getNumeroCuenta()+"\n"+"Origen: "+myTitulo.getCuentaOrigen().getNumeroCuenta());
-            btnCancelar.setOnClickListener(this);
-            btnAceptar.setOnClickListener(this);
-            //System.out.println(textoId.getText());
+        textoId.setText("id: "+myTitulo.getId()+"");
+        descripcion.setText("Descripcion: \n"+myTitulo.getDescripcion()+"\n Importe: \n"+myTitulo.getImporte()+"\n Tipo:\n"+myTitulo.getTipo());
+        descripcion2.setText("Destino: \n"+myTitulo.getCuentaDestino().getNumeroCuenta()+"\n"+"Origen: \n"+myTitulo.getCuentaOrigen().getNumeroCuenta());
+        btnCancelar.setOnClickListener(this);
+        btnAceptar.setOnClickListener(this);
 
 
         return builder.create();

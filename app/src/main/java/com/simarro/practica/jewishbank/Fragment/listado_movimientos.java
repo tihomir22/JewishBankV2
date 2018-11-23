@@ -87,24 +87,10 @@ public class listado_movimientos extends Fragment implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();
-        DialogoPersonalizado dialogo = newInstance((Movimiento) parent.getItemAtPosition(position));
+        DialogoPersonalizado dialogo = DialogoPersonalizado.newInstance((Movimiento) parent.getItemAtPosition(position));
         dialogo.show(fragmentManager, "tagConfirmacion");
     }
 
-    static DialogoPersonalizado newInstance(Movimiento mov) {
-
-        DialogoPersonalizado f = new DialogoPersonalizado();
-
-        // Supply num input as an argument.
-        Bundle args = new Bundle();
-        //args.putString("titulo", mov.getId()+"");
-        args.putSerializable("obj",mov);
-        f.setArguments(args);
-
-
-
-        return f;
-    }
 
 
 }
