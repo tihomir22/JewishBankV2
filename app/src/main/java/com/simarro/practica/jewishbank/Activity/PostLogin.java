@@ -3,6 +3,8 @@ package com.simarro.practica.jewishbank.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +18,41 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
     Cliente aux;
     TextView tv;
     TextView tv2;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_post_login,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intento;
+        switch (item.getItemId()){
+            case R.id.contrasenyaitem:
+                 intento =new Intent(this,cambiarContrasenya.class);
+                intento.putExtra("nif", aux.getNif());
+                startActivity(intento);
+                return true;
+            case R.id.posicionglobalitem:
+                 intento =new Intent(this,PosicionGlobal.class);
+                intento.putExtra("nif", aux.getNif());
+                startActivity(intento);
+                return true;
+            case R.id.transferenciasitem:
+                intento =new Intent(this,TransferenciasActivity.class);
+                intento.putExtra("nif", aux.getNif());
+                startActivity(intento);
+                return true;
+
+            case R.id.action_settings:
+                    intento =new Intent(this,Settings.class);
+                    startActivity(intento);
+                    return true;
+
+        }
+        return false;
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
