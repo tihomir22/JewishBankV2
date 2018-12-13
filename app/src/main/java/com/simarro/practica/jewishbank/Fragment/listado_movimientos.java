@@ -64,7 +64,7 @@ public class listado_movimientos extends Fragment implements AdapterView.OnItemC
 
     public void cargarDatosCuenta(){
         Cuenta aux=new Cuenta();
-        aux.setId(Integer.parseInt(getActivity().getIntent().getStringExtra("id")));
+        aux.setId(getActivity().getIntent().getIntExtra("id",0));
         this.listamovimientos=this.mbo.getMovimientos(aux);
         inicializarMovil();
     }
