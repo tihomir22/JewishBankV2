@@ -48,7 +48,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
             case R.id.transferenciasitem:
                 this.actualizar();
                 intento =new Intent(this,Transferencias.class);
-                intento.putExtra("id", this.id);
+                //intento.putExtra("id", this.id);
                 startActivity(intento);
                 return true;
 
