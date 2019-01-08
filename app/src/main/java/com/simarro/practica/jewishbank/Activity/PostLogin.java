@@ -1,18 +1,13 @@
 package com.simarro.practica.jewishbank.Activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
@@ -23,7 +18,6 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
     Cliente aux;
     TextView tv;
     TextView tv2;
-    int id;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,9 +40,8 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
                 startActivity(intento);
                 return true;
             case R.id.transferenciasitem:
-                this.actualizar();
-                intento =new Intent(this,Transferencias.class);
-                //intento.putExtra("id", this.id);
+                intento =new Intent(this,TransferenciasActivity.class);
+                intento.putExtra("nif", aux.getNif());
                 startActivity(intento);
                 return true;
 
@@ -60,8 +53,6 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         }
         return false;
     }
-
-
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -125,6 +116,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
 
             if (v.getTag().toString().equalsIgnoreCase("transferenTag")) {
                 Intent intento = new Intent(this.getBaseContext(), Transferencias.class);
+                intento.putExtra("id",aux.getId()+"");
                 startActivity(intento);
             }
         }
@@ -134,6 +126,5 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         this.aux= (Cliente) this.mbo.getmiBD().getClienteDAO().search(aux);
         tv.setText(aux.getNif());
         tv2.setText(aux.getClaveSeguridad());
-        this.id=this.aux.getId();
     }
 }

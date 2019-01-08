@@ -1,6 +1,7 @@
 package com.simarro.practica.aplicacionbancoanna2018.bd;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.util.Log;
 import com.simarro.practica.aplicacionbancoanna2018.dao.ClienteDAO;
 import com.simarro.practica.aplicacionbancoanna2018.dao.CuentaDAO;
 import com.simarro.practica.aplicacionbancoanna2018.dao.MovimientoDAO;
+import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
+import com.simarro.practica.aplicacionbancoanna2018.pojo.Movimiento;
 
 
 public class MiBD extends SQLiteOpenHelper {
@@ -92,6 +95,20 @@ public class MiBD extends SQLiteOpenHelper {
 
         insercionDatos(db);
     }
+    public void insercionMovimiento(Movimiento m){
+        db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe,idcuentaorigen, idcuentadestino) VALUES (null, null, " +m.getTipo()+", "+m.getFechaOperacion().getTime()+", '"+m.getDescripcion()+"', "+m.getImporte()+","+m.getCuentaOrigen().getId()+", "+m.getCuentaDestino().getId()+");");
+    }
+    public void actualizarSaldo(Cuenta c){
+        db.execSQL("UPDATE cuentas SET saldoactual= "+c.getSaldoActual()+" WHERE banco='"+c.getBanco()+"'AND sucursal='"+c.getSucursal()+"' AND dc='"+c.getDc()+"' AND numerocuenta='"+c.getNumeroCuenta()+"';");
+    }
+    public boolean existeCuenta(String banco,String sucursal,String dc,String numCuenta){
+        String sql="SELECT numerocuenta FROM cuentas WHERE banco='"+banco+"' AND sucursal='"+sucursal+"' AND dc='"+dc+"' AND numerocuenta='"+numCuenta+"';";
+        Cursor c = db.rawQuery(sql,null);
+        if (c.getCount() > 0) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion ) {
@@ -149,7 +166,11 @@ public class MiBD extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '2000000007', 156398452.87, 18);");
         db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '2000000008', 2389463.98, 19);");
 
-        db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (35, 35, '1001', '2001', '22', '14881488', 500000000, 25);");
+
+        db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '14881488', 500000000, 25);");
+        db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '14881489', 500000001, 25);");
+        db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '14881490', 500000002, 25);");
+        db.execSQL("INSERT INTO cuentas (rowid, id, banco, sucursal, dc, numerocuenta, saldoactual, idcliente) VALUES (null, null, '1001', '2001', '22', '14881491', 500000003, 25);");
 
         // Insertamos los movimientos
         db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, 0, 1420153380000, 'Recibo Iberdrola Diciembre 2014', -73.87, 1, 5);");
