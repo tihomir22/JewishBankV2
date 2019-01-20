@@ -33,6 +33,8 @@ public class MiBancoOperacional {
         return instance;
     }
 
+
+
     // Operacion Login: Verifica que el cliente existe y que su contraseña es correcta. Recibira un cliente
     // que solo contendrá el nif y la password.
     public Cliente login(Cliente c){

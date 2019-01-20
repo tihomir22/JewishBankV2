@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.simarro.practica.aplicacionbancoanna2018.bd.MiBD;
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cuenta;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Movimiento;
@@ -33,6 +35,7 @@ public class listado_movimientos extends Fragment implements AdapterView.OnItemC
     TransferAdapter adaptador=null;
     MiBancoOperacional mbo=null;
     ListView lista=null;
+    Cuenta aux=null;
 
 
     public listado_movimientos() {
@@ -61,9 +64,23 @@ public class listado_movimientos extends Fragment implements AdapterView.OnItemC
 
     }
 
+    public void filtrarMovimientos(int tipo){
+        if(this.aux!=null){
+            if(tipo!=-1) {
+                this.listamovimientos=this.mbo.getMovimientosTipo(this.aux, tipo);
+            }else{
+                this.listamovimientos=this.mbo.getMovimientos(this.aux);
+            }
+            this.adaptador = new TransferAdapter(this.getActivity(), R.layout.elemento_lista, this.listamovimientos);
+            lista.setAdapter(this.adaptador);
+        }else{
+            Toast.makeText(this.getActivity(),"No hay cuenta seleccioanda",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void cargarDatosCuenta(){
-        Cuenta aux=new Cuenta();
+        this.aux=new Cuenta();
         aux.setId(Integer.parseInt(getActivity().getIntent().getStringExtra("id")));
         this.listamovimientos=this.mbo.getMovimientos(aux);
         inicializarMovil();
