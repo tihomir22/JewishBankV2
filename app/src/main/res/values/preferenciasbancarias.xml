@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string-array name="pais">
+            <item>España</item>
+            <item>Francia</item>
+            <item>Alemania</item>
+        </string-array>
+        <string-array name="codigopais">
+            <item>ESP</item>
+            <item>FRA</item>
+            <item>ALE</item>
+        </string-array>
+
+        <string-array name="origendatos">
+            <item>Base de datos local</item>
+            <item>Cloud Service</item>
+        </string-array>
+        <string-array name="origendatosentry">
+            <item>LOC</item>
+            <item>CLO</item>
+        </string-array>
+
+        <string-array name="colores">
+            <item>Normal</item>
+            <item>Dark</item>
+            <item>Light</item>
+            <item>George Theme</item>
+        </string-array>
+        <string-array name="coloresSiglas">
+            <item>NO</item>
+            <item>DA</item>
+            <item>LI</item>
+            <item>GT</item>
+        </string-array>
+
+
+    </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+        <ListPreference
+            android:key="pais"
+            android:title="Pais de residencia"
+            android:summary="¿Donde vivo?"
+            android:dialogTitle="Indicar Pais donde vives"
+            android:entries="@array/pais"
+            android:entryValues="@array/codigopais" />
+
+        <ListPreference
+            android:key="origendatos"
+            android:title="Origen de los datos"
+            android:summary="Que origen de datos quieres usar?"
+            android:dialogTitle="Que origen de datos quieres usar?"
+            android:entries="@array/origendatos"
+            android:entryValues="@array/origendatosentry"
+            android:defaultValue="LOC"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Multimedia">
+        <CheckBoxPreference
+            android:key="sonido"
+            android:title="Sonido"
+            android:summary="Activar sonido de la app" />
+        <CheckBoxPreference
+            android:key="videobienvenida"
+            android:title="Video de bienvenida"
+            android:summary="Activar video de bienvenida" />
+        <ListPreference
+            android:key="color"
+            android:title="Color tema"
+            android:summary="¿Que color de tema quieres usar?"
+            android:dialogTitle="Indicar color de tema"
+            android:entries="@array/colores"
+            android:entryValues="@array/coloresSiglas" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
