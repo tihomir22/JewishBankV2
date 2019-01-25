@@ -6,16 +6,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.simarro.practica.jewishbank.R;
+import com.simarro.practica.jewishbank.util.LocaleHelper;
 
-public class Settings extends PreferenceActivity implements View.OnClickListener {
+public class Settings extends PreferenceActivity  {
 
-    Button buton=null;
     SharedPreferences prefs;
 
     @Override
@@ -25,21 +26,37 @@ public class Settings extends PreferenceActivity implements View.OnClickListener
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(android.R.id.content, new PreferenciasFragment());
         ft.commit();
-        this.buton=findViewById(R.id.button2);
-        prefs = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-        this.buton.setOnClickListener(this);
+
+        prefs=getSharedPreferences("MisPreferencias",Context.MODE_PRIVATE);
+
+
+        //LocaleHelper.setLocale(Settings.this, "en");
+
+        //It is required to recreate the activity to reflect the change in UI.
+       // recreate();
+
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     public static class PreferenciasFragment extends PreferenceFragment {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.opciones);
+            //Change Application level locale
+
+
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Settings.this);
+        System.out.println(""+pref.getString("origendatos",""));
+        System.out.println(""+pref.getString("color",""));
+        System.out.println(""+pref.getBoolean("videobienvenida",false));
+        System.out.println(""+pref.getString("pais",""));
+        System.out.println(""+pref.getBoolean("sonido",false));
+        super.onBackPressed();
     }
 }
