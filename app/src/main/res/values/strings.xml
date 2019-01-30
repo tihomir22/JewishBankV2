@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JewishBank</string>
+    <string name="app_name">SP JewishBank</string>
     <string name="title_activity_posicion_global">PosicionGlobal</string>
     <string name="cambiarcontrasenya">Cambiar contraseña</string>
     <string name="posicionglobal">Posición Global</string>
