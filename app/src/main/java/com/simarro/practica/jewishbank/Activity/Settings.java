@@ -4,17 +4,20 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.simarro.practica.jewishbank.R;
 
-public class Settings extends PreferenceActivity  {
+public class Settings extends PreferenceActivity {
 
     SharedPreferences pref;
 
@@ -25,14 +28,13 @@ public class Settings extends PreferenceActivity  {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(android.R.id.content, new PreferenciasFragment());
         ft.commit();
-         pref = PreferenceManager.getDefaultSharedPreferences(this);
-
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
 
 
     }
 
 
-    public static class PreferenciasFragment extends PreferenceFragment {
+    public static class PreferenciasFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -41,25 +43,40 @@ public class Settings extends PreferenceActivity  {
 
 
         }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            System.out.println("Me seleccionaste puto");
+            return super.onOptionsItemSelected(item);
+        }
+
+
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            System.out.println("ME clickeaste weeeyy");
+            return false;
+        }
     }
+
+
+
 
     @Override
     public void onBackPressed() {
-        System.out.println(""+pref.getString("origendatos",""));
-        System.out.println(""+pref.getString("color",""));
-        System.out.println(""+pref.getBoolean("videobienvenida",false));
-        System.out.println(""+pref.getString("pais",""));
-        System.out.println(""+pref.getBoolean("sonido",false));
-        SharedPreferences.Editor editor=pref.edit();
+        System.out.println("" + pref.getString("origendatos", ""));
+        System.out.println("" + pref.getString("color", ""));
+        System.out.println("" + pref.getBoolean("videobienvenida", false));
+        System.out.println("" + pref.getString("pais", ""));
+        System.out.println("" + pref.getBoolean("sonido", false));
+        SharedPreferences.Editor editor = pref.edit();
 
-        editor.putString("origendatos",pref.getString("origendatos",""));
-        editor.putString("color",pref.getString("color",""));
-        editor.putBoolean("videobienvenida",pref.getBoolean("videobienvenida",false));
-        editor.putString("pais",pref.getString("pais",""));
-        editor.putBoolean("sonido",pref.getBoolean("sonido",false));
+        editor.putString("origendatos", pref.getString("origendatos", ""));
+        editor.putString("color", pref.getString("color", ""));
+        editor.putBoolean("videobienvenida", pref.getBoolean("videobienvenida", false));
+        editor.putString("pais", pref.getString("pais", ""));
+        editor.putBoolean("sonido", pref.getBoolean("sonido", false));
 
         editor.commit();
-
 
 
         super.onBackPressed();
