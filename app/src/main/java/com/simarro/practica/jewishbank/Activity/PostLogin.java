@@ -1,6 +1,10 @@
 package com.simarro.practica.jewishbank.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.simarro.practica.LocaleHelper.LocaleHelper;
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.aplicacionbancoanna2018.pojo.Cliente;
 import com.simarro.practica.jewishbank.R;
@@ -18,10 +23,26 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
     Cliente aux;
     TextView tv;
     TextView tv2;
+    Menu optionsMenu;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_post_login,menu);
+        optionsMenu=menu;
+        SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(this);
+        String codigo_lenguaje=pref.getString("pais", "");
+        Context context=null;
+        if(codigo_lenguaje.equalsIgnoreCase("ESP")){
+            context = LocaleHelper.setLocale(this,"es");
+        }else{
+            context = LocaleHelper.setLocale(this,"en");
+        }
+
+        Resources resources = context.getResources();
+        optionsMenu.getItem(0).setTitle(resources.getString(R.string.changePassOption));
+        optionsMenu.getItem(1).setTitle(resources.getString(R.string.openTransOption));
+        optionsMenu.getItem(2).setTitle(resources.getString(R.string.openGlobalPos));
+        optionsMenu.getItem(3).setTitle(resources.getString(R.string.openSettings));
         return true;
     }
 
@@ -71,7 +92,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_post_login);
         mbo = MiBancoOperacional.getInstance(this);
 
-
+        this.updateViews();
         String pass= getIntent().getStringExtra("pass");
         String nif=getIntent().getStringExtra("nif");
         Cliente cli=new Cliente();
@@ -126,5 +147,36 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         this.aux= (Cliente) this.mbo.getmiBD().getClienteDAO().search(aux);
         tv.setText(aux.getNif());
         tv2.setText(aux.getClaveSeguridad());
+    }
+
+    private void updateViews() {
+
+        SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(this);
+
+        System.out.println("" + pref.getString("origendatos", ""));
+        System.out.println("" + pref.getString("color", ""));
+        System.out.println("" + pref.getBoolean("videobienvenida", false));
+        System.out.println("" + pref.getString("pais", ""));
+        System.out.println("" + pref.getBoolean("sonido", false));
+
+        String codigo_lenguaje=pref.getString("pais", "");
+        setTitle(getResources().getString(R.string.app_name));
+        Context context=null;
+        if(codigo_lenguaje.equalsIgnoreCase("ESP")){
+            context = LocaleHelper.setLocale(this,"es");
+        }else{
+            context = LocaleHelper.setLocale(this,"en");
+        }
+
+        Resources resources = context.getResources();
+        //Refresco de datos
+        setTitle(resources.getString(R.string.app_name));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.updateViews();
     }
 }

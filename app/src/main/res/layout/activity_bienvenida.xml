@@ -81,7 +81,7 @@
             android:background="@color/colorGold"
             android:onClick="llamarLogin"
             android:padding="0dp"
-            android:text="Login"
+            android:text="@string/btnlogin"
             android:textColor="@android:color/white" />
 
         <Button
@@ -92,7 +92,7 @@
             android:layout_marginRight="50dp"
             android:layout_weight="0"
             android:background="@color/colorDarculaLightGray"
-            android:text="Register"
+            android:text="@string/btnregistro"
             android:textColor="@android:color/white" />
 
         <Button
@@ -103,7 +103,7 @@
             android:layout_marginRight="50dp"
             android:layout_weight="0"
             android:background="@color/colorDarculaMediumGray"
-            android:text="Salir"
+            android:text="@string/btnsalir"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
@@ -117,7 +117,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorSecondary"
         android:onClick="reiniciarbd"
-        android:text="Restart BBDD"
+        android:text="@string/btnreiniciarbbdd"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

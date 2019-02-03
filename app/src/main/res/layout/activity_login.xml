@@ -29,10 +29,10 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/dembow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DNI:"
+            android:text="@string/dnilogin"
             android:textSize="14sp"
             tools:text="DNI:" />
 
@@ -41,14 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Introduzca su DNI"
+            android:hint="@string/dniInput"
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/dembow2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PASS:"
+            android:text="@string/passlogin"
             android:textSize="14sp"
             tools:text="PASS:" />
 
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Contraseña"
+            android:hint="@string/passInput"
             android:inputType="textPassword" />
 
         <Button
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorGold"
             android:onClick="logearse"
-            android:text="Entrar"
+            android:text="@string/btnlogin"
             android:textColor="@android:color/background_light" />
 
         <Button
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorDarculaMediumGray"
             android:onClick="salir"
-            android:text="Salir"
+            android:text="@string/btnsalir"
             android:textColor="@android:color/background_light" />
     </LinearLayout>
 

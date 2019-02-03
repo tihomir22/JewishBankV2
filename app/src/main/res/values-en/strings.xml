@@ -9,6 +9,19 @@
     <string name="dialogo_linea_1">Line 1 Dialog</string>
     <string name="dialogo_linea_2">Line 2 Dialog</string>
 
+    <string name="btnlogin">Login</string>
+    <string name="btnregistro">Register</string>
+    <string name="btnsalir">Exit</string>
+    <string name="btnreiniciarbbdd">Restart BBDD</string>
+    <string name="dnilogin">DNI</string>
+    <string name="dniInput">Enter your DNI</string>
+    <string name="passlogin">Password</string>
+    <string name="passInput">Enter your password</string>
+    <string name="changePassOption">Change the password</string>
+    <string name="openTransOption">Open Transactions</string>
+    <string name="openGlobalPos">Open Global Position</string>
+    <string name="openSettings">Open Settings</string>
+
     <string name="itemtodos">Show all </string>
     <string name="itemtipo0">Show Tipe 0</string>
     <string name="itemtipo1">Show Tipe 1</string>
