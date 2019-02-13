@@ -25,6 +25,7 @@
     <string name="itemtipo0">Mostrar tipo 0</string>
     <string name="itemtipo1">Mostrar tipo 1</string>
     <string name="itemtipo2">Mostrar tipo 2</string>
+    <string name="cajerosadmin">Administracion de cajeros</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

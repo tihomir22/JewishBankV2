@@ -3,8 +3,8 @@
     package="com.simarro.practica.jewishbank">
 
     <application
-        android:allowBackup="true"
         android:name="com.simarro.practica.LocaleHelper.Home"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -28,7 +28,8 @@
             android:label="@string/title_activity_posicion_global"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.TransferenciasActivity" />
-        <activity android:name=".Activity.Settings"></activity>
+        <activity android:name=".Activity.Settings" />
+        <activity android:name=".Activity.GestionCajerosActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.simarro.practica.LocaleHelper.LocaleHelper;
+import com.simarro.practica.aplicacionbancoanna2018.bd.CajerosSQLHelper;
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBD;
 import com.simarro.practica.aplicacionbancoanna2018.bd.MiBancoOperacional;
 import com.simarro.practica.jewishbank.R;
@@ -33,6 +35,7 @@ public class BienvenidaActivity extends AppCompatActivity {
     Button btnRegistro=null;
     Button btnSalir=null;
     Button reiniciarBD=null;
+    Button admincajeros=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +46,22 @@ public class BienvenidaActivity extends AppCompatActivity {
         btnRegistro=findViewById(R.id.Register);
         btnSalir=findViewById(R.id.register);
         reiniciarBD=findViewById(R.id.button);
+        admincajeros=findViewById(R.id.button2);
+
 
         mbo=MiBancoOperacional.getInstance(this);
         this.updateViews();
         System.out.println(getResources().getString(R.string.app_name));
+
+
+
+        admincajeros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intento=new Intent(BienvenidaActivity.this,GestionCajerosActivity.class);
+                startActivity(intento);
+            }
+        });
 
     }
 

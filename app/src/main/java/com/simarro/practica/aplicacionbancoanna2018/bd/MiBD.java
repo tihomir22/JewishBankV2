@@ -78,20 +78,24 @@ public class MiBD extends SQLiteOpenHelper {
         db.execSQL(sqlCreacionClientes);
         db.execSQL(sqlCreacionCuentas);
         db.execSQL(sqlCreacionMovimientos);
+        //db.execSQL(Constantes.sqlCreacionCajeros);
 
         insercionDatos(db);
         Log.i("SQLite", "Se crea la base de datos " + database + " version " + version);
     }
+
 
     public void reiniciar(SQLiteDatabase db){
         //elimina tabla
         db.execSQL( "DROP TABLE IF EXISTS clientes" );
         db.execSQL( "DROP TABLE IF EXISTS cuentas" );
         db.execSQL( "DROP TABLE IF EXISTS movimientos" );
+        //db.execSQL( "DROP TABLE IF EXISTS cajeros" );
         //y luego creamos la nueva tabla
         db.execSQL(sqlCreacionClientes);
         db.execSQL(sqlCreacionCuentas);
         db.execSQL(sqlCreacionMovimientos);
+       // db.execSQL(Constantes.sqlCreacionCajeros);
 
         insercionDatos(db);
     }
@@ -198,6 +202,8 @@ public class MiBD extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, 0, 1423090980000, 'Recibo BMW Enero 2015', -256.65, 35, -1);");
         db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, 0, 1423263780000, 'Reintegro cajero', -70, 35, 6);");
         db.execSQL("INSERT INTO movimientos (rowid, id, tipo, fechaoperacion, descripcion, importe, idcuentaorigen, idcuentadestino) VALUES (null, null, 0, 1423263780000, 'Ingreso Nómina Ayuntamiento Valencia Enero 2015', 2150.5, 35, 5);");
+
+
     }
 
 
