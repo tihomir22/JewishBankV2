@@ -23,6 +23,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
     Cliente aux;
     TextView tv;
     TextView tv2;
+    String nif;
     Menu optionsMenu;
 
     @Override
@@ -32,6 +33,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(this);
         String codigo_lenguaje=pref.getString("pais", "");
         Context context=null;
+
         if(codigo_lenguaje.equalsIgnoreCase("ESP")){
             context = LocaleHelper.setLocale(this,"es");
         }else{
@@ -43,6 +45,12 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
         optionsMenu.getItem(1).setTitle(resources.getString(R.string.openTransOption));
         optionsMenu.getItem(2).setTitle(resources.getString(R.string.openGlobalPos));
         optionsMenu.getItem(3).setTitle(resources.getString(R.string.openSettings));
+        //System.out.println(nif);
+        if(nif.trim().equalsIgnoreCase("X5514136R")){
+            optionsMenu.getItem(4).setTitle("Administrador de cajeros");
+        }else {
+            optionsMenu.removeItem(R.id.admin_cajero);
+        }
         return true;
     }
 
@@ -70,6 +78,10 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
                     intento =new Intent(this,Settings.class);
                     startActivity(intento);
                     return true;
+            case R.id.admin_cajero:
+                intento=new Intent(this,GestionCajerosActivity.class);
+                startActivity(intento);
+                return true;
 
         }
         return false;
@@ -94,7 +106,7 @@ public class PostLogin extends AppCompatActivity implements View.OnClickListener
 
         this.updateViews();
         String pass= getIntent().getStringExtra("pass");
-        String nif=getIntent().getStringExtra("nif");
+         nif=getIntent().getStringExtra("nif");
         Cliente cli=new Cliente();
         cli.setNif(nif);
         cli.setClaveSeguridad(pass);

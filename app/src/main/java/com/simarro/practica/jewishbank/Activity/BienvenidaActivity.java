@@ -35,7 +35,7 @@ public class BienvenidaActivity extends AppCompatActivity {
     Button btnRegistro=null;
     Button btnSalir=null;
     Button reiniciarBD=null;
-    Button admincajeros=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class BienvenidaActivity extends AppCompatActivity {
         btnRegistro=findViewById(R.id.Register);
         btnSalir=findViewById(R.id.register);
         reiniciarBD=findViewById(R.id.button);
-        admincajeros=findViewById(R.id.button2);
+
 
 
         mbo=MiBancoOperacional.getInstance(this);
@@ -55,13 +55,7 @@ public class BienvenidaActivity extends AppCompatActivity {
 
 
 
-        admincajeros.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intento=new Intent(BienvenidaActivity.this,GestionCajerosActivity.class);
-                startActivity(intento);
-            }
-        });
+
 
     }
 

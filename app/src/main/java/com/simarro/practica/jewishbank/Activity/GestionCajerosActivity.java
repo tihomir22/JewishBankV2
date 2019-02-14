@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -35,6 +37,31 @@ public class GestionCajerosActivity extends AppCompatActivity {
     Cursor cursor;
     TextView textosindatos;
     Button añadirCajero;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.admin_cajero,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            showInputDialogAdd();
+            return true;
+        }else if(id==R.id.info){
+            mostrarAlerta();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +71,6 @@ public class GestionCajerosActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Toast.makeText(getBaseContext(), "Base de datos preparada", Toast.LENGTH_LONG).show();
         lista = (ListView) findViewById(R.id.lista);
-        añadirCajero=findViewById(R.id.addatm);
-// Creamos la clase que nos permitira acceder a las operaciones de la db
         cajeroDAO = new CajeroDAO(this);
         cajeroDAO.abrir();
 
@@ -66,16 +91,7 @@ public class GestionCajerosActivity extends AppCompatActivity {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //Cursor cursor= (Cursor) parent.getItemAtPosition(position);
-                //System.out.println(DatabaseUtils.dumpCursorToString(cursor));
                 Cursor cursor= (Cursor) parent.getItemAtPosition(position);
-
-                //System.out.println(cursor.getInt(cursor.getColumnIndex("_id")));
-                //cursor.moveToPosition(position);
-
-
-
                 showInputDialog(cursor,position);
             }
         });
@@ -86,13 +102,7 @@ public class GestionCajerosActivity extends AppCompatActivity {
             textosindatos.setVisibility(View.INVISIBLE);
             textosindatos.invalidate();
         }
-        añadirCajero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //añadir();
-                showInputDialogAdd();
-            }
-        });
+
     }
 
     /*public void añadir(){
@@ -223,5 +233,18 @@ public class GestionCajerosActivity extends AppCompatActivity {
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    public void mostrarAlerta(){
+        AlertDialog alertDialog = new AlertDialog.Builder(GestionCajerosActivity.this).create();
+        alertDialog.setTitle("Información");
+        alertDialog.setMessage("Haga click simple para modificar un cajero , o aguanta sobre un elemento para eliminarlo");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

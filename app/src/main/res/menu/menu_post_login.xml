@@ -25,4 +25,10 @@
         app:showAsAction="never"
         android:icon="@android:drawable/sym_call_incoming"
         />
+    <item android:id="@+id/admin_cajero"
+        android:title="Administrador cajero"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:icon="@android:drawable/sym_call_incoming"
+        />
 </menu>
